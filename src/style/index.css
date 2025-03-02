@@ -1,0 +1,62 @@
+@import "tailwindcss";
+
+
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+
+:root {
+    --primary-color: #2166ff;
+}
+
+
+.theme-color,
+.sell-color,
+.subscribe-btn,
+.checkout-btn,
+.signin-btn,
+.signup-btn {
+    background-color: var(--primary-color);
+}
+
+.nav-icon,
+.child-color,
+.new-price,
+.signin-btn-2 {
+    color: var(--primary-color);
+}
+
+
+.service-btn-p:hover {
+    .service-btn {
+        background-color: black;
+        transition: 0.3s ease-in-out;
+
+    }
+}
+
+/* .price-btn-p:hover {
+    .price-btn {
+        background-color: black;
+        transition: 0.3s ease-in-out;
+
+    }
+} */
+
+
+
+/* Custom scrollbar height */
+.scrollbar-custom::-webkit-scrollbar {
+    height: 0px;
+    /* Adjust scrollbar height */
+}
+
+.scrollbar-custom::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+}
+
+.scrollbar-custom::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
