@@ -17,7 +17,7 @@ const BlogDetails = () => {
         const fetchBlog = async () => {
             setLoading(true);  // Ensure loading is true when fetching
             try {
-                const response = await fetch(`http://localhost:5000/posts/${id}`);
+                const response = await fetch(`https://plexus-backend-1.onrender.com/posts/${id}`);
                 if (response.ok) {
                     const data = await response.json();
                     setBlog(data);
@@ -36,7 +36,7 @@ const BlogDetails = () => {
 
 
     useEffect(() => {
-        axios.get('http://localhost:5000/posts/')
+        axios.get('https://plexus-backend-1.onrender.com/posts/')
             .then(response => {
                 // setPosts(response.data.slice(0, 12));
                 setBlogs(response.data);

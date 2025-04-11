@@ -20,7 +20,7 @@ const EditItem = ({ id, onClose, onUpdate }) => {
                 const token = localStorage.getItem('token');
                 if (!token) return;
 
-                const response = await axios.get(`http://localhost:5000/posts/${id}`, {
+                const response = await axios.get(`https://plexus-backend-1.onrender.com/posts/${id}`, {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }
@@ -63,7 +63,7 @@ const EditItem = ({ id, onClose, onUpdate }) => {
             const token = localStorage.getItem('token');
             if (!token) return;
 
-            await axios.post(`http://localhost:5000/posts/update/${id}`, formData, {
+            await axios.post(`https://plexus-backend-1.onrender.com/posts/update/${id}`, formData, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'multipart/form-data',

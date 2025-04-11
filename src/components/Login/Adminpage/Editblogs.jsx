@@ -7,7 +7,7 @@ const EditBlogs = () => {
     const [selectedBlog, setSelectedBlog] = useState(null);
 
     useEffect(() => {
-        fetch('http://localhost:5000/read')
+        fetch('https://plexus-backend-1.onrender.com/read')
             .then(response => response.json())
             .then(data => {
                 if (Array.isArray(data.blogs)) {
@@ -26,7 +26,7 @@ const EditBlogs = () => {
     const handleDelete = (id) => {
         const proceed = window.confirm("Are you sure?");
         if (proceed) {
-            const url = `http://localhost:5000/delete/${id}`;
+            const url = `https://plexus-backend-1.onrender.com/delete/${id}`;
             fetch(url, {
                 method: 'DELETE',
             })

@@ -39,7 +39,7 @@ const Adminpage = () => {
         }
 
         try {
-            const response = await fetch(`http://localhost:5000/posts/search?q=${query}`);
+            const response = await fetch(`https://plexus-backend-1.onrender.com/posts/search?q=${query}`);
             const data = await response.json();
 
             setSearchResults(data.items || []);
@@ -51,7 +51,7 @@ const Adminpage = () => {
 
     const fetchData = async () => {
         try {
-            const response = await axios.get('http://localhost:5000/posts/');
+            const response = await axios.get('https://plexus-backend-1.onrender.com/posts/');
             setItem(response.data);
             setLoading(false);
 

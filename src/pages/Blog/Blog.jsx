@@ -34,7 +34,7 @@ export default function Blog() {
     const [blog, setBlog] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/read')
+        fetch('https://plexus-backend-1.onrender.com/read')
             .then(response => response.json())
             .then(data => {
                 // console.log("Fetched data:", data); // Debugging line

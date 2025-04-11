@@ -92,20 +92,20 @@ const Navbar = () => {
                         )}
                     </div>
 
-                    <a href="#" className="text-black hover:text-blue-600 font-medium block md:inline">Portfolio</a>
+                    {/* <a href="#" className="text-black hover:text-blue-600 font-medium block md:inline">Portfolio</a> */}
                     <a href="/blog" className="text-black hover:text-blue-600 font-medium block md:inline">Blog</a>
                     <a href="/contact" className="text-black hover:text-blue-600 font-medium block md:inline">Contact Us</a>
                 </div>
 
                 {/* Icons and Contact */}
                 <div className="hidden lg:flex items-center space-x-4">
-                    <button onClick={() => setSearch(true)} className="hidden md:flex items-center justify-center w-10 h-10 rounded-full bg-blue-200 text-blue-600 hover:bg-blue-500 hover:text-white transition duration-150">
+                    {/* <button onClick={() => setSearch(true)} className="hidden md:flex items-center justify-center w-10 h-10 rounded-full bg-blue-200 text-blue-600 hover:bg-blue-500 hover:text-white transition duration-150">
                         <Search size={16} />
-                    </button>
+                    </button> */}
                     <a href="/contact" className="hidden md:flex items-center justify-center w-10 h-10 rounded-full bg-blue-200 text-blue-600 hover:bg-blue-500 hover:text-white transition duration-150">
                         <PhoneCall size={16} />
                     </a>
-                    <span className="hidden md:block text-lg font-medium">+1-123-456-7890</span>
+                    <span className="hidden md:block text-lg font-medium">+977 980-7608486</span>
                     <a href="/contact" className="pe-2 ps-4 py-1 cursor-pointer bg-white hover:bg-black hover:text-white transition-all duration-300 ease-in-out text-blue-500 rounded-full font-medium flex items-center space-x-2">
                         <span>Get Started</span>
                         <span className="rounded-full px-2 py-2 bg-blue-500 text-white">
