@@ -3,46 +3,46 @@ import { Star } from "lucide-react";
 
 const testimonials = [
     {
-        name: "Olivia Cruz",
+        name: "Mesut Celik, zaventeam",
         location: "Georgia, USA",
-        image: "https://via.placeholder.com/50",
-        review: "All communication is efficiently captured in their portal, ensuring a seamless process!",
+        image: "https://media.licdn.com/dms/image/v2/C5603AQFG18bfFgbxhA/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1630594224676?e=2147483647&v=beta&t=HWfzyMqWeQg9DPnmnHcWzP2LBvdzXXuYVOtpAOfOqXk",
+        review: "Single Page Responsive Design",
     },
     {
-        name: "Martin Bailey",
-        location: "Georgia, USA",
-        image: "https://via.placeholder.com/50",
-        review: "The team is easy to work with and helped me create an amazing website in no time!",
+        name: "Samrat Sarker",
+        location: "Rajkot, INDIA",
+        image: "https://media.licdn.com/dms/image/v2/D4E03AQHc3YA9zN9qWg/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1673169096900?e=1749686400&v=beta&t=uxpADMuYP2BG5VEMNJOWuXSyaA2Bw8Dqgo9XAHryk-8",
+        review: "Timely delivery, highly recommended",
     },
     {
-        name: "Alex Zender",
-        location: "Georgia, USA",
-        image: "https://via.placeholder.com/50",
-        review: "Fantastic service! They truly understand design and functionality. Highly recommend!",
+        name: "Samrat Sarker",
+        location: "Rajkot, INDIA",
+        image: "https://media.licdn.com/dms/image/v2/D4E03AQHc3YA9zN9qWg/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1673169096900?e=1749686400&v=beta&t=uxpADMuYP2BG5VEMNJOWuXSyaA2Bw8Dqgo9XAHryk-8",
+        review: "Great experience working with Mahadi. He was professional, communicated well, and delivered high-quality work on time. Highly recommend him for professional projects.",
     },
-    {
-        name: "Sophia Lee",
-        location: "California, USA",
-        image: "https://via.placeholder.com/50",
-        review: "Highly professional and creative! I love their work and would recommend them to anyone.",
-    },
-    {
-        name: "Alex Zender",
-        location: "Georgia, USA",
-        image: "https://via.placeholder.com/50",
-        review: "Fantastic service! They truly understand design and functionality. Highly recommend!",
-    },
-    {
-        name: "Sophia Lee",
-        location: "California, USA",
-        image: "https://via.placeholder.com/50",
-        review: "Highly professional and creative! I love their work and would recommend them to anyone.",
-    },
+    // {
+    //     name: "Sophia Lee",
+    //     location: "California, USA",
+    //     image: "https://via.placeholder.com/50",
+    //     review: "Highly professional and creative! I love their work and would recommend them to anyone.",
+    // },
+    // {
+    //     name: "Alex Zender",
+    //     location: "Georgia, USA",
+    //     image: "https://via.placeholder.com/50",
+    //     review: "Fantastic service! They truly understand design and functionality. Highly recommend!",
+    // },
+    // {
+    //     name: "Sophia Lee",
+    //     location: "California, USA",
+    //     image: "https://via.placeholder.com/50",
+    //     review: "Highly professional and creative! I love their work and would recommend them to anyone.",
+    // },
 ];
 
 export default function Testimonials() {
     const [activeIndex, setActiveIndex] = useState(0);
-    const [itemsPerSlide, setItemsPerSlide] = useState(2); // Default: 2 testimonials per slide
+    const [itemsPerSlide, setItemsPerSlide] = useState(3); // Default: 2 testimonials per slide
 
     useEffect(() => {
         const updateItemsPerSlide = () => {

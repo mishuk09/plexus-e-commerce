@@ -1,9 +1,9 @@
 import { ArrowUpRight } from 'lucide-react'
-import projectone from '../../assets/projects/project-img-01-960x960.webp'
-import projecttwo from '../../assets/projects/project-img-02-960x960.webp'
-import projectth from '../../assets/projects/project-img-03-960x960.webp'
-import projectfo from '../../assets/projects/project-img-04-960x960.webp'
-import projectfi from '../../assets/projects/project-img-05-960x960.webp'
+import projectone from '../../assets/projects/eeeeeeeeeeeeeeeeee.png'
+import projecttwo from '../../assets/projects/bbbbbbbbbb.png'
+import projectth from '../../assets/projects/tttttttt.png'
+import projectfo from '../../assets/projects/ererer.png'
+import projectfi from '../../assets/projects/csehackssss.png'
 import projectsix from '../../assets/projects/project-img-08-960x960.webp'
 import projectsev from '../../assets/projects/project-img-09-960x960.webp'
 
@@ -12,44 +12,57 @@ const projects = [
         title: "Ecommerce Website",
         description: "A fully functional ecommerce platform with seamless checkout and user authentication.",
         image: projectone,
-        link: "https://ecommerce-five-nu-53.vercel.app/",
+        link: "https://e-commerce-4103d.web.app/",
+    },
+    {
+        title: "Crypto Wallet WEB 3 Application",
+        description: "A decentralized wallet application for managing cryptocurrencies.",
+        image: projecttwo,
+        link: "https://merchant-wallet-verification.web.app/",
+    },
+    {
+        title: "Tip Wallet WEB 3 Application",
+        description: "A decentralized wallet application for managing cryptocurrencies.",
+        image: projectth,
+        link: "https://tip-wallet-check.web.app/",
+    },
+    {
+        title: "Salluloze Ecommerce",
+        description: "A fully functional ecommerce platform with seamless checkout and user authentication.",
+        image: projectfo,
+        link: "https://sallylooze.com/",
     },
     {
         title: "CSEHacks Learning Platform",
         description: "An interactive learning platform designed for coding enthusiasts and students.",
-        image: projecttwo,
-        link: "https://csehacks.com",
-    },
-    {
-        title: "Tour Management System",
-        description: "A professional and responsive tour cost management system.",
-        image: projectth,
-        link: "#",
-    },
-    {
-        title: "Smart Home Automation",
-        description: "A cutting-edge smart home solution integrating IoT and AI.",
-        image: projectfo,
-        link: "#",
-    },
-    {
-        title: "AI Chatbot",
-        description: "An intelligent chatbot for customer support and automation.",
         image: projectfi,
-        link: "#",
+        link: "https://csehacks.tech/",
     },
-    {
-        title: "Smart Home Automation",
-        description: "A cutting-edge smart home solution integrating IoT and AI.",
-        image: projectsix,
-        link: "#",
-    },
-    {
-        title: "AI Chatbot",
-        description: "An intelligent chatbot for customer support and automation.",
-        image: projectsev,
-        link: "#",
-    },
+
+    // {
+    //     title: "Smart Home Automation",
+    //     description: "A cutting-edge smart home solution integrating IoT and AI.",
+    //     image: projectfo,
+    //     link: "#",
+    // },
+    // {
+    //     title: "AI Chatbot",
+    //     description: "An intelligent chatbot for customer support and automation.",
+    //     image: projectfi,
+    //     link: "#",
+    // },
+    // {
+    //     title: "Smart Home Automation",
+    //     description: "A cutting-edge smart home solution integrating IoT and AI.",
+    //     image: projectsix,
+    //     link: "#",
+    // },
+    // {
+    //     title: "AI Chatbot",
+    //     description: "An intelligent chatbot for customer support and automation.",
+    //     image: projectsev,
+    //     link: "#",
+    // },
 ];
 
 const Project = () => {
@@ -68,7 +81,7 @@ const Project = () => {
                     {projects.map((project, index) => (
                         <div
                             key={index}
-                            className="relative bg-white shadow-lg rounded-2xl overflow-hidden w-[340px] md:w-[350px] flex-shrink-0"
+                            className="relative bg-white shadow-lg rounded-xl border border-gray-300 overflow-hidden w-[340px] md:w-[370px] flex-shrink-0"
                         >
                             <img
                                 src={project.image}
