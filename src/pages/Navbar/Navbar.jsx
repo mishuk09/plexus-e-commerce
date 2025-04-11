@@ -46,7 +46,7 @@ const Navbar = () => {
                         </a>
                         {isPagesOpen && (
                             <div className="absolute   left-0 bg-white shadow-lg w-80 p-4 mt-6 rounded-lg border border-gray-200">
-                                <a href="#" className="block text-gray-800 hover:text-blue-600 text-base font-semibold py-1 px-2 rounded-md transition duration-300 ease-in-out transform hover:scale-105">
+                                <a href="/about" className="block text-gray-800 hover:text-blue-600 text-base font-semibold py-1 px-2 rounded-md transition duration-300 ease-in-out transform hover:scale-105">
                                     <span role="img" aria-label="About Us" className="mr-2">ℹ️</span> About Us
                                 </a>
                                 {/* <a href="#" className="block text-gray-800 hover:text-blue-600 text-base font-semibold py-1 px-2 rounded-md transition duration-300 ease-in-out transform hover:scale-105">

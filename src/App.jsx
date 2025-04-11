@@ -18,6 +18,7 @@ import ManageBlog from './components/Login/Adminpage/DeletePost'
 import AddBlogs from './pages/Blog/AddBlogs'
 import Editblogs from './components/Login/Adminpage/Editblogs'
 import Blog from './pages/Blog/Blog'
+import About from './pages/About/About'
 // import BlogMain from './pages/Blog/BlogMain'
 
 function App() {
@@ -34,6 +35,9 @@ function App() {
         <Route path='/seo' element={<Seo />} />
         <Route path='/graphic' element={<Graphic />} />
         <Route path='/social' element={<Social />} />
+        <Route path='/about' element={<About />} />
+
+
         {/* <Route path='/blog' element={<Blog />} /> */}
         <Route path='/blog' element={<BlogMain />} />
         <Route path='/product/:id' element={<BlogDetails />} />
