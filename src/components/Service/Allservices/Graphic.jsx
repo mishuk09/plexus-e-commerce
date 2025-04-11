@@ -2,7 +2,6 @@
 import HomePage from '../../HomePage';
 import graphic from './img/graphic.png'
 import graphiccc from './img/graphiccc.png';
-import ButtonFormet from '../../ContactPage/ButtonFormet';
 import Headline from '../../Headline';
 import logo from './img/logo.png';
 import flayer from './img/flayer.png';
@@ -15,7 +14,6 @@ import aii from './img/aii.png';
 import ps from './img/ps.png';
 import figma from './img/figma.png';
 import canva from './img/canva.png';
-import { Link } from 'react-router-dom';
 import Carousel from "react-multi-carousel";
 import 'react-multi-carousel/lib/styles.css';
 import BlogSection from '../../../pages/BlogSection/BlogSection';
@@ -41,6 +39,7 @@ const Graphic = () => {
             items: 1
         }
     };
+    
     const webItems = [
         { id: 1, img: logo, title: "Logo Design", details: "Unique, scalable, and brand-focused." },
         { id: 2, img: flayer, title: "Flyer Design", details: "Eye-catching and informative." },

@@ -9,6 +9,8 @@ import SetupProcess from './pages/SetupProcess/SetupProcess'
 import Success from './pages/Success/Success'
 import Testimonials from './pages/Testimonials/Testimonials'
 import './style/App.css'
+import BlogMain from './pages/Blog/BlogMain'
+import Headline from './components/Headline'
 
 
 function ChildApp() {
@@ -25,9 +27,10 @@ function ChildApp() {
             <Price />
             <Testimonials />
             <BlogSection />
-
+            {/* <Headline headline=" Let's update with our Blog" ch1="Our" ch2="Latest" ch3="Blog" seemore="/blog " /> */}
+            {/* <BlogMain /> */}
             {/* service rounte */}
-          
+
         </>
     )
 }

@@ -1,98 +1,145 @@
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
-import * as React from 'react';
-import { styled } from '@mui/material/styles';
-import Dialog from '@mui/material/Dialog';
-import DialogTitle from '@mui/material/DialogTitle';
-import thumsup from './img/thumsup.png';
+import { useState, useRef } from 'react';
+import axios from 'axios';
+import JoditEditor from 'jodit-react';
+import { X } from 'lucide-react';
+import Alert from '../../components/utills/Alert';
 
 
-const BootstrapDialog = styled(Dialog)(({ theme }) => ({
-    '& .MuiDialogContent-root': {
-        padding: theme.spacing(2),
-    },
-    '& .MuiDialogActions-root': {
-        padding: theme.spacing(1),
-    },
-}));
+const AddBlogs = ({ onClose, onAdd }) => {
+    // const [img, setImg] = useState(null);
+    const [images, setImages] = useState([]);
+    const [title, setTitle] = useState('');
+    const [author, setAuthor] = useState('');
 
-const AddBlogs = () => {
-    const { register, handleSubmit, reset } = useForm();
-    const [value, setValue] = useState('');
-    const [success, setSuccess] = useState('');
+    const [description, setDescription] = useState('');
+    const [successMessage, setSuccessMessage] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const editor = useRef(null);
 
-    const modules = {
-        toolbar: [
-            [{ 'header': [1, 2, false] }],
-            ['bold', 'italic', 'underline', 'strike', 'blockquote'],
-            [{ 'list': 'ordered' }, { 'list': 'bullet' }, { 'indent': '-1' }, { 'indent': '+1' }],
-            ['link', 'image'],
-            ['clean']
-        ],
+    const handleImageChange = (e) => {
+        const files = Array.from(e.target.files);
+        setImages(files);
     };
-    const formats = [
-        'header',
-        'bold', 'italic', 'underline', 'strike', 'blockquote',
-        'list', 'bullet', 'indent',
-        'link', 'image'
-    ];
 
-    const onSubmit = (data) => {
-        const url = `http://localhost:5001/blogs`;
-        data.description = value;
-        fetch(url, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data),
-        })
-            .then((res) => res.json())
-            .then((result) => {
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setLoading(true);
+        const formData = new FormData();
+        // formData.append('image', img);
+        images.forEach(image => formData.append('images', image));
+        formData.append('title', title);
+        formData.append('author', author);
+        formData.append('description', description);
 
-                setSuccess("Blog add Successfully..")
-                setValue('');
-                reset();
-
+        try {
+            const res = await axios.post('http://localhost:5000/posts/add', formData, {
+                headers: { 'Content-Type': 'multipart/form-data' },
             });
+
+            // Reset fields
+            setImages([]);
+            setTitle('');
+            setAuthor('');
+            setDescription('');
+            setSuccessMessage(true);
+            onAdd()
+            setTimeout(() => setSuccessMessage(false), 3000);
+        } catch (err) {
+            console.error(err);
+        } finally {
+            setLoading(false);  // Stop loading once the request completes
+        }
     };
 
-    const handleCloseDialog = () => {
-        setSuccess(false);
-    };
+
+
 
     return (
-        <form className="container" onSubmit={handleSubmit(onSubmit)}>
-            <h1 className=" text-center font-verdina text-5xl font-bold mt-10">Add Blog</h1>
-
-            {
-                success && (
-                    <BootstrapDialog onClose={handleCloseDialog} aria-labelledby="customized-dialog-title" open={success}>
-                        <DialogTitle sx={{ m: 0, p: 2 }} id="customized-dialog-title">
-                            <img className="w-[200px] text-center items-center justify-center" src={thumsup} alt="" />
-                            Blog Added Successfully...
-                        </DialogTitle>
-
-
-                    </BootstrapDialog>
-                )
-            }
-            <input {...register("name")} className="text-black mt-10 mb-4 w-full bg-slate-100 border" type="text" placeholder="Blog Title" />
-
-            <ReactQuill theme="snow" formats={formats} modules={modules} value={value} onChange={setValue} style={{ height: '300px' }} />
-            <input placeholder="Photo URL" className="text-black border w-full bg-slate-100 mt-14" type="text" {...register("photourl", { required: true })} />
-            <input className="text-black border w-full bg-slate-100" type="date" {...register("date", { required: true })} />
+        <>
+            {successMessage && (
+                <Alert name='Added Successfully!' />
+            )}
 
 
 
-            <input type="submit" className="text-white font-bold border w-full bg-blue-500 mb-20" value='Submit' />
-        </form>
+            <div className="fixed inset-0 z-20 flex items-center justify-center bg-black/50">
+
+                <div className="max-w-4xl 2xl:max-w-7xl max-h-[500px] 2xl:max-h-[600px] relative overflow-y-auto overflow-x-hidden h-auto bg-white p-4 rounded">
+
+                    <button onClick={onClose} className='absolute top-2 right-3'><X size={18} /></button>
+
+                    <h2 className="text-2xl text-center font-semibold mb-6">Add New Blog</h2>
+
+                    <form onSubmit={handleSubmit} className="space-y-4" method="POST" encType="multipart/form-data">
+                        <div className="grid lg:grid-cols-3 gap-2 lg:gap-4">
+
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700">Images</label>
+                                <input
+                                    type="file"
+                                    name="images"
+                                    onChange={handleImageChange}
+                                    multiple
+                                    required
+                                    className="mt-1 block w-full p-1 h-8 text-xs border border-gray-300 rounded"
+                                />
+                            </div>
+
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700">Title</label>
+                                <input
+                                    type="text"
+                                    value={title}
+                                    onChange={(e) => setTitle(e.target.value)}
+                                    required
+                                    className="mt-1 block w-full p-1 h-8 text-xs border border-gray-300 rounded"
+                                />
+                            </div>
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700">Author</label>
+                                <input
+                                    type="text"
+                                    value={author}
+                                    onChange={(e) => setAuthor(e.target.value)}
+                                    required
+                                    className="mt-1 block w-full p-1 h-8 text-xs border border-gray-300 rounded"
+                                />
+                            </div>
+
+
+
+
+                        </div>
+
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700">Description</label>
+                            <JoditEditor
+                                ref={editor}
+                                value={description}
+                                tabIndex={1}
+                                onBlur={(newContent) => setDescription(newContent)}
+                                onChange={(newContent) => setDescription(newContent)}
+                            />
+                        </div>
+
+                        <button
+                            type="submit"
+                            disabled={loading}
+                            className="mt-4 w-full bg-blue-500 p-2 h-10  text-white rounded-md   flex items-center justify-center"
+                        >
+
+                            Add Post
+                        </button>
+
+
+
+                    </form>
+                </div>
+            </div>
+
+
+        </>
     );
-};
+}
 
 export default AddBlogs;
-
-
-

@@ -33,7 +33,7 @@ const Navbar = () => {
 
                 {/* Navigation Links */}
                 <div className={`lg:flex md:space-x-6  text-lg ${isOpen ? "block" : "hidden"} absolute lg:relative top-16 lg:top-0 left-0 w-full lg:w-auto space-y-3 lg:space-y-0     shadow-md md:shadow-none  bg-white lg:bg-transparent z-20 items-center p-3 lg:p-0`}>
-                    <a href="#" className="text-blue-600 font-medium block lg:inline">Home</a>
+                    <a href="/" className="text-blue-600 font-medium block lg:inline">Home</a>
 
                     {/* Mega Menu for Pages */}
                     <div
@@ -49,7 +49,7 @@ const Navbar = () => {
                                 <a href="#" className="block text-gray-800 hover:text-blue-600 text-base font-semibold py-1 px-2 rounded-md transition duration-300 ease-in-out transform hover:scale-105">
                                     <span role="img" aria-label="About Us" className="mr-2">ℹ️</span> About Us
                                 </a>
-                                <a href="#" className="block text-gray-800 hover:text-blue-600 text-base font-semibold py-1 px-2 rounded-md transition duration-300 ease-in-out transform hover:scale-105">
+                                {/* <a href="#" className="block text-gray-800 hover:text-blue-600 text-base font-semibold py-1 px-2 rounded-md transition duration-300 ease-in-out transform hover:scale-105">
                                     <span role="img" aria-label="Team" className="mr-2">👥</span> Team
                                 </a>
                                 <a href="#" className="block text-gray-800 hover:text-blue-600 text-base font-semibold py-1 px-2 rounded-md transition duration-300 ease-in-out transform hover:scale-105">
@@ -57,7 +57,7 @@ const Navbar = () => {
                                 </a>
                                 <a href="#" className="block text-gray-800 hover:text-blue-600 text-base font-semibold py-1 px-2 rounded-md transition duration-300 ease-in-out transform hover:scale-105">
                                     <span role="img" aria-label="Careers" className="mr-2">💼</span> Careers
-                                </a>
+                                </a> */}
                             </div>
 
 

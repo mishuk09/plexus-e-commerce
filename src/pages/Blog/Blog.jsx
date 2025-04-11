@@ -34,7 +34,7 @@ export default function Blog() {
     const [blog, setBlog] = useState([]);
 
     useEffect(() => {
-        fetch('https://digital-backend-7van.onrender.com/blogs')
+        fetch('http://localhost:5000/read')
             .then(response => response.json())
             .then(data => {
                 // console.log("Fetched data:", data); // Debugging line
@@ -74,7 +74,7 @@ export default function Blog() {
 
                     <div className="container mx-auto px-4 py-8">
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                            {blog.slice(0, 9).map((post) => (
+                            {blog.map((post) => (
                                 // eslint-disable-next-line react/jsx-key
                                 <a href={`/blogsdetails/${post._id}`} key={post._id}
                                     className="bg-white cursor-pointer rounded-lg shadow-lg transition-transform duration-300 ease-in-out transform hover:scale-105"
@@ -83,7 +83,7 @@ export default function Blog() {
                                     <div className="relative">
                                         <img
                                             className="w-full h-48 object-cover rounded-t-lg"
-                                            src={post.photourl}
+                                            src={post.photoUrl}
                                             alt={post.name}
                                         />
                                         <div className="absolute inset-0 bg-black opacity-20 rounded-t-lg"></div>
@@ -92,7 +92,7 @@ export default function Blog() {
                                     {/* Content Section */}
                                     <div className="px-6 py-4 flex flex-col justify-between" style={{ flex: 1 }}>
                                         <div>
-                                            <div className="font-semibold text-xl text-gray-800 mb-3">{post.name}</div>
+                                            <div className="font-semibold text-xl text-gray-800 mb-3">{post.title}</div>
                                             <p
                                                 className="text-gray-600 text-base line-clamp-2"
                                                 style={{
@@ -102,7 +102,7 @@ export default function Blog() {
                                                     overflow: 'hidden',
                                                     textOverflow: 'ellipsis',
                                                 }}
-                                                dangerouslySetInnerHTML={{ __html: post.description }}
+                                                dangerouslySetInnerHTML={{ __html: post.content }}
                                             ></p>
                                         </div>
 

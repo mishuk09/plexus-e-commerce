@@ -1,20 +1,23 @@
 import { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router';
-import { Link } from 'react-router-dom';
-import { ArrowLeft, ArrowRight } from 'lucide-react'; // Import Lucide icons
+// import { useNavigate, useParams } from 'react-router';
+import { useParams } from 'react-router-dom';
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
+import axios from 'axios';
+import { Clock } from 'lucide-react';
 
 const BlogDetails = () => {
-    const { blogid } = useParams();
-    const navigate = useNavigate();
-    const [prevBlog, setPrevBlog] = useState(null);
-    const [nextBlog, setNextBlog] = useState(null);
-    const [blog, setBlog] = useState({});
+    const { id } = useParams();
+
+    const [blog, setBlog] = useState(null);
     const [blogs, setBlogs] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchBlog = async () => {
+            setLoading(true);  // Ensure loading is true when fetching
             try {
-                const response = await fetch(`https://digital-backend-7van.onrender.com/blogs/${blogid}`);
+                const response = await fetch(`http://localhost:5000/posts/${id}`);
                 if (response.ok) {
                     const data = await response.json();
                     setBlog(data);
@@ -23,96 +26,88 @@ const BlogDetails = () => {
                 }
             } catch (error) {
                 console.error('Error:', error);
+            } finally {
+                setLoading(false); // Make sure to toggle loading after the fetch is done
             }
         };
 
         fetchBlog();
-    }, [blogid]);
+    }, [id]);
+
 
     useEffect(() => {
-        const fetchBlogList = async () => {
-            try {
-                const response = await fetch('https://digital-backend-7van.onrender.com/blogs');
-                if (response.ok) {
-                    const data = await response.json();
-                    setBlogs(data.blogs.slice(0, 4));
-                } else {
-                    console.error('Failed to fetch blog list');
-                }
-            } catch (error) {
-                console.error('Error:', error);
-            }
-        };
-
-        fetchBlogList();
+        axios.get('http://localhost:5000/posts/')
+            .then(response => {
+                // setPosts(response.data.slice(0, 12));
+                setBlogs(response.data);
+                setLoading(false);
+            })
+            .catch(error => {
+                console.log(error);
+                setLoading(false);
+            });
     }, []);
 
-    useEffect(() => {
-        const currentIndex = blogs.findIndex(b => b._id === blogid);
-        setPrevBlog(currentIndex > 0 ? blogs[currentIndex - 1] : null);
-        setNextBlog(currentIndex < blogs.length - 1 ? blogs[currentIndex + 1] : null);
-    }, [blogid, blogs]);
 
-    const navigateToServiceDetail = id => {
-        navigate(`/blogsdetails/${id}`);
-    };
 
     return (
-        <div className='bg-blue-50 pb-10'>
+        <div className='bg-blue-50 pb-10 min-h-screen'>
             <div className='max-w-7xl mx-auto'>
                 <div className='flex gap-4 pt-4'>
-                    {/* Blog list */}
-                    <div className='w-[20%] h-full md:flex flex-col  hidden  md:w-[40%] lg:w-[30%] border border-gray-300 bg-white rounded-lg p-2'>
-                        {blogs.map(unite => (
-                            <Link
-                                key={unite._id}
-                                to={`/blogsdetails/${unite._id}`}
-                                className='w-full p-2 mb-4 flex h-auto bg-white rounded-lg  shadow-lg  '
-                                onClick={(e) => { e.preventDefault(); navigateToServiceDetail(unite._id); }}
-                            >
-                                <div className='w-[30%] h-25 flex items-center justify-center'>
-                                    <img className='w-full h-full object-cover rounded-md' src={unite.photourl} alt={unite.name} />
-                                </div>
-                                <div
-                                    className='ps-4 w-[70%] flex items-center'
-                                    style={{
-                                        display: '-webkit-box',
-                                        WebkitLineClamp: 1,  // Limit to 1 line
-                                        WebkitBoxOrient: 'horizontal',
-                                        overflow: 'hidden',
-                                        textOverflow: 'ellipsis',
-                                        whiteSpace: 'nowrap',  // Ensure text doesn't wrap to next line
-                                    }}
+                    <div className="w-[20%] md:w-[30%] border h-full border-gray-200 bg-white rounded-xl p-4 hidden md:flex flex-col shadow-sm">
+                        {blogs ? (
+                            blogs.slice(0, 4).map((blog) => (
+                                <a
+                                    key={blog._id}
+                                    href={`/product/${blog._id}`}
+
+                                    className="w-full flex items-center gap-4 p-3 mb-4 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow"
                                 >
-                                    <span className='font-semibold  text-gray-800'>{unite.name}</span>
-                                    <div>
-                                        <span className='inline-block bg-gray-100 text-xs text-gray-600 font-medium py-1 px-3 rounded-full'>
-                                            {unite.date}
-                                        </span>
+                                    <div className="w-[20%] aspect-square flex items-center justify-center overflow-hidden rounded">
+                                        <img
+                                            src={blog.img}
+                                            alt={blog.title}
+                                            className="w-full h-full object-cover"
+                                        />
                                     </div>
-
-                                </div>
-                            </Link>
-                        ))}
+                                    <div className="w-[70%] truncate">
+                                        <span className="font-medium text-gray-900">{blog.title}</span>
+                                    </div>
+                                </a>
+                            ))
+                        ) : (
+                            <Skeleton height={100} count={3} />
+                        )}
                     </div>
 
-                    {/* Current Blog */}
-                    <div className='  w-[100%] md:w-[60%] border border-gray-300 bg-white rounded h-auto px-2'>
-                        <p className='font-verdina font-bold text-2xl mt-2 tracking-wide'>{blog.name}</p>
-                        <p className='mt-1 text-slate-600 text-sm'>Date: <span>{blog.date}</span></p>
-                        <img className='w-full rounded mt-4' src={blog.photourl} alt="" />
-                        <div className='text-justify pt-10 font-nunito ' dangerouslySetInnerHTML={{ __html: blog.description }} />
-                        <div className="flex justify-between mt-10 mb-3">
-                            <div className="rounded-full bg-green-500 text-white px-3 py-1">
-                                {prevBlog && <Link to={`/blogsdetails/${prevBlog._id}`}><ArrowLeft className="me-2" />Prev</Link>}
-                            </div>
-                            <div className="rounded-full bg-green-500 text-white px-3 py-1">
-                                {nextBlog && <Link to={`/blogsdetails/${nextBlog._id}`}>Next <ArrowRight className="ms-2" /></Link>}
-                            </div>
-                        </div>
+
+                    <div className='w-full  md:w-[60%] border border-gray-300 bg-white rounded h-auto px-4 md:px-2'>
+                        {loading || !blog ? (
+                            <>
+                                <Skeleton height={30} width={'80%'} />
+                                <Skeleton height={20} width={'50%'} className='mt-2' />
+                                <Skeleton height={300} className='mt-4' />
+                                <Skeleton height={100} className='mt-4' />
+                            </>
+                        ) : (
+                            <>
+                                <p className='font-bold text-2xl mt-2 tracking-wide'>{blog.title}</p>
+                                <p className='mt-2 flex gap-1 text-xs text-slate-500'>
+                                    <Clock size={15} />
+                                    {new Date(blog.date).toLocaleDateString('en-US', {
+                                        year: 'numeric',
+                                        month: 'long',
+                                        day: 'numeric',
+                                    })}
+                                </p>
+
+                                <img className='w-full rounded mt-4' src={blog.img} alt={blog.title} />
+                                <div className='text-justify pt-10' dangerouslySetInnerHTML={{ __html: blog.description }} />
+                            </>
+                        )}
+
                     </div>
-                    {/* Placeholder */}
-                    <div className='w-[20%] border border-gray-300 flex-col  hidden md:flex bg-white rounded h-[400px]'></div>
+                    <div className='w-[20%] border border-gray-300 flex-col hidden md:flex bg-white rounded h-[400px]'></div>
                 </div>
             </div>
         </div>

@@ -38,7 +38,7 @@ const Footer = () => {
                         <p className='ps-2 md:ps-10 xs:ps-2 font-nunito text-sm mt-2'><MapPin className='inline-block me-2 ' size={20} />Rajkot, Gujarat, India</p>
                         <p className='ps-2 md:ps-10 xs:ps-2 font-nunito text-sm mt-2'><Mail className='inline-block me-2 ' size={20} />services@plexus.org.in</p>
                         <p className='ps-2 md:ps-10 xs:ps-2 font-nunito text-sm mt-3'>
-                            <a href="https://www.facebook.com/profile.php?id=61555155673334" target='_blank' rel='noopener noreferrer'>
+                            <a href="https://web.facebook.com/profile.php?id=61574721125786&_rdc=1&_rdr#" target='_blank' rel='noopener noreferrer'>
                                 <Facebook className='inline-block me-3 hover:text-blue-500' size={24} />
                             </a>
                             <a href="https://www.instagram.com/plexus_dgm/" target='_blank' rel='noopener noreferrer'>
